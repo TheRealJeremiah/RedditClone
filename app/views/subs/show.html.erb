@@ -1,0 +1,17 @@
+<h1>Title</h1>
+<%= @sub.title %>
+<h2>Description</h2>
+<%= @sub.description %>
+
+<p><%= link_to 'Edit sub', edit_sub_path(@sub) %></p>
+
+<h1>Posts</h1>
+<ul>
+  <% @sub.posts.each do |post| %>
+    <li><%= link_to post.title, post_path(post) %></li>
+  <% end %>
+</ul>
+
+<p><%= link_to 'Create a new post', new_post_path(selected_sub_id: @sub.id) %></p>
+
+<p><%= link_to 'Back to all subs', subs_path %></p>

@@ -1,0 +1,19 @@
+<h1>
+  <% if @post.url %>
+    <%= link_to @post.title, full_url(@post.url) %>
+  <% else %>
+    <%= @post.title %>
+  <% end %>
+</h1>
+
+<p>
+  <%= @post.content %>
+</p>
+
+<%= link_to 'Edit post', edit_post_path(@post) %>
+<p>
+Crossposted subs:
+<%= @post.subs.map do |sub| %>
+<% link_to sub.title, sub_path(sub) %>
+<% end.join(', ').html_safe %>
+</p>

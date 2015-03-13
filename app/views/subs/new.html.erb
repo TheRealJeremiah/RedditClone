@@ -1,0 +1,10 @@
+<h1>Create a sub</h1>
+<form action='<%= subs_path %>' method='POST'>
+  <%= csrf_tag %>
+  <label>Title: <input type='text' name="sub[title]"
+                       value="<%= @sub.title %>"> </label>
+  <br/>
+  <label>Description: <textarea name="sub[description]"><%= @sub.description %></textarea> </label>
+  <br/>
+  <input type='submit' value="create‽">
+</form>

@@ -1,0 +1,23 @@
+<h1>Create a post</h1>
+
+<form action='<%= posts_path %>' method='post'>
+  <%= csrf_tag %>
+    Subs:
+    <br/>
+      <% @subs.each do |sub| %>
+        <label>
+          <input type='checkbox' name='post[sub_ids][]' value='<%= sub.id %>'
+            <%= 'checked' if sub.id == params[:selected_sub_id].to_i %>>
+            <%= sub.title %>
+        </label>
+        <br/>
+      <% end %>
+  <br/>
+  <label>Title: <input type='text' name='post[title]' value='<%= @post.title %>'></label>
+  <br/>
+  <label>URL: <input type='text' name='post[url]' value='<%= @post.url %>'></label>
+  <br/>
+  <label>Content: <textarea name='post[content]'><%= @post.content %></textarea></label>
+  <br/>
+  <input type='submit' value='create'>
+</form>

@@ -1,0 +1,11 @@
+<h1>Edit sub</h1>
+<form action='<%= sub_path(@sub) %>' method='POST'>
+  <input type="hidden" name="_method" value="PATCH">
+  <%= csrf_tag %>
+  <label>Title: <input type='text' name="sub[title]"
+                       value="<%= @sub.title %>"> </label>
+  <br/>
+  <label>Description: <textarea name="sub[description]"><%= @sub.description %></textarea> </label>
+  <br/>
+  <input type='submit' value="edit/update">
+</form>
