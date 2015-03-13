@@ -1,0 +1,9 @@
+<h1>Sign up</h1>
+
+<form action='<%= users_path %>' method='post'>
+  <label>Username: <input type='text' name='user[username]'></label>
+  <br/>
+  <label>Password: <input type='password' name='user[password]'></label>
+  <br/>
+  <%= button_to 'Sign up', new_user_path %>
+</form>
