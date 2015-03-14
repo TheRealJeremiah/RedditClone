@@ -8,6 +8,10 @@ RedditClone::Application.routes.draw do
   end
   resources :posts, except: [:index, :destroy] do
     resources :comments, only: [:new]
+    member do
+      post 'upvote'
+      post 'downvote'
+    end
   end
   resources :comments, only: [:create, :show]
 end

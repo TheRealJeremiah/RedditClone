@@ -20,6 +20,8 @@ class Post < ActiveRecord::Base
   has_many :subs, through: :post_subs, source: :sub
   has_many :comments
 
+  has_many :votes, as: :votable, dependent: :destroy
+
   def comments_by_parent_id
     comment_hash = Hash.new { |h, k| h[k] = [] }
     comments.includes(:author).each do |comment|

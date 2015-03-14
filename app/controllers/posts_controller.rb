@@ -67,6 +67,23 @@ class PostsController < ApplicationController
     end
   end
 
+  def upvote
+    @post = Post.find_by_id(params[:id])
+    if @post
+      # broken
+      @post.votes = []
+      @post.votes << Vote.new(value: 1)
+      redirect_to :back
+    else
+      flash[:errors] = ['Cannot find post with that id']
+      redirect_to subs_path
+    end
+  end
+
+  def downvote
+    @post = Post.find_by_id(params[:id])
+  end
+
   def full_url(url)
     if url.start_with?("http://")
       url

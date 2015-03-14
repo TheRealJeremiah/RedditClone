@@ -8,7 +8,12 @@
 <h1>Posts</h1>
 <ul>
   <% @sub.posts.each do |post| %>
-    <li><%= link_to post.title, post_path(post) %></li>
+    <li>
+      (<%= post.votes.first ? post.votes.first.score : 0 %>)
+      <%= link_to post.title, post_path(post) %>
+      <%= button_to '/\\', upvote_post_path(post) %>
+      <%= button_to '\/', downvote_post_path(post) %>
+    </li>
   <% end %>
 </ul>
 
