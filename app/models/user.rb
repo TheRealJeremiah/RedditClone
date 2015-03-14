@@ -13,6 +13,7 @@
 class User < ActiveRecord::Base
   has_many :subs
   has_many :authored_posts, class_name: :Post, foreign_key: :user_id
+  has_many :comments
 
   validates :username, :password_digest, :session_token, presence: true
   validates :username, uniqueness: true

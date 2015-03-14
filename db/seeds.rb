@@ -12,4 +12,4 @@ User.create!(username: 'cat', password: 'cat')
 Sub.create!(title: 'Cats', description: 'this is a cat sub about cats')
 Sub.create!(title: 'Dogs', description: 'this is a dog sub about dogs')
 
-Post.create!
+# Post.create!

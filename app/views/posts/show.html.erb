@@ -10,10 +10,30 @@
   <%= @post.content %>
 </p>
 
-<%= link_to 'Edit post', edit_post_path(@post) %>
+<% if current_user && @post.user_id == current_user.id %>
+  <%= link_to 'Edit post', edit_post_path(@post) %>
+<% end %>
+<br/>
+<br/>
+<%= link_to 'Leave a comment', new_post_comment_path(@post) %>
+
 <p>
-Crossposted subs:
-<%= @post.subs.map do |sub| %>
-<% link_to sub.title, sub_path(sub) %>
-<% end.join(', ').html_safe %>
+  Comments:
+  <ol>
+    <% @post.comments.where(parent_comment_id: nil).each do |comment| %>
+      <li>
+        <%= comment.content %>
+        <%= link_to 'See replies', comment_path(comment) %>
+        <br/>
+        Posted by: <%= comment.author.username %>
+      </li>
+    <% end %>
+  </ol>
+</p>
+
+<p>
+  Crossposted subs:
+  <%= @post.subs.map do |sub| %>
+  <% link_to sub.title, sub_path(sub) %>
+  <% end.join(', ').html_safe %>
 </p>

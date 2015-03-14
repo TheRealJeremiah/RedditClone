@@ -1,0 +1,9 @@
+<h1>Leave a comment</h1>
+<form action="<%= comments_path(post_id: @post.id) %>" method="post">
+<%= csrf_tag %>
+<textarea name="comment[content]"></textarea>
+<br/>
+<input type="submit" value="post">
+</form>
+<br/>
+<%= link_to "Back to post", post_path(@post) %>

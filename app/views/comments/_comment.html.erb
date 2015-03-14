@@ -1,0 +1,17 @@
+<li>
+<%= comment.content %><br/>
+By: <%= comment.author.username %>, Time: <%= comment.created_at %><br/>
+Reply to this comment<br/>
+<form action="<%= comments_url(parent_id: comment.id) %>" method="post">
+  <%= csrf_tag %>
+  <textarea name="comment[content]"></textarea>
+  <br/>
+  <input type="submit" value="post">
+</form>
+</li>
+
+<% @comments_by_parent_id[comment.id].each do |child_comment| %>
+<ul>
+  <%= render 'comment', comment: child_comment %>
+</ul>
+<% end %>

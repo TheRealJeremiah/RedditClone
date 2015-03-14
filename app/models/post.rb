@@ -18,6 +18,15 @@ class Post < ActiveRecord::Base
   belongs_to :author, foreign_key: :user_id, class_name: 'User'
   has_many :post_subs, dependent: :destroy
   has_many :subs, through: :post_subs, source: :sub
+  has_many :comments
+
+  def comments_by_parent_id
+    comment_hash = Hash.new { |h, k| h[k] = [] }
+    comments.includes(:author).each do |comment|
+      comment_hash[comment.parent_comment_id] << comment
+    end
+    comment_hash
+  end
 
   private
 
